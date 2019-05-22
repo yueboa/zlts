@@ -1,0 +1,41 @@
+<!--上传图片-->
+
+<script src="/static/plugins/plupload/plupload.full.min.js"></script>
+<div class="uploader-box " id="imgurl-uploader-box" style="">
+	<button type="button" class="btn btn-primary btn-sm" id="imgurl-button" data-text="上传文件">上传文件</button>
+	<div class="alert alert-danger alert-dismissable" style="display: none;"></div>
+	<div class="uploader-list"></div>
+</div>
+
+
+<script >
+    var img = '';
+    {if condition="isset($data['imgurl'])"}
+    	img = '{:json_encode($data["imgurl"])}';
+    {/if}
+	
+	img = '[{"imgurl":"\/uploads\/20190516\/ce012f061e41e0cb552f263199ec4bd3.png"}]';
+    multifile = typeof(multifile) == 'undefined'?1:multifile;
+    maximum = typeof(maximum) == 'undefined'?1:maximum;
+
+$(function(){
+	hhn.upload({ 
+		name:'imgurl', 
+		value:{$data["imgurl"]}, 
+		url:{:url('attachment/upload.html')}, 
+		multifile:0, 
+		maximum:1, 
+		maxsize:'2048kb',
+		ext_type:'jpg,jpeg,png,gif', 
+		ext_field: [],
+		show_field_text:1, 
+		show_url:0,
+		show_size:{"width":"auto","height":"100px"}, 
+		multipart_params:[],
+		field_name:'imgurl'  
+	});
+})
+
+
+</script>
+

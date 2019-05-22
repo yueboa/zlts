@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>我的公司</title>
+		<script type="text/javascript" src='__PLUGINS__/q-js/fb.js'></script>
+		<link rel="stylesheet" href="__PLUGINS__/q-css/mycompany.css" type="text/css">
+</head>
+<body>
+
+	<div class='warp'>
+		<div class="logo">
+			<a href="{:url('personalcenter/index')}"><img src="__PLUGINS__/q-img/logo.png" alt="" title=""></a>
+		</div>
+		<div class="people">
+			<div class="pic">
+				<img src="{$member.img_url}" alt="" title="">
+			</div>
+			<p class="name">{$data.name}</p>
+		
+		</div>
+
+		<div class="details">
+			<!-- 	<img src="__PLUGINS__/q-img/license.jpg">
+			<p>微信从交流工具成长为连接各行业的开放平台，微信从交流工具成长为连接各行业的开放平台，微信从交流工具成长为连接各行业的开放平台。综合即时沟通、娱乐社交和生活服务为一体的新移动生活方式在</p>
+				<p>微信，用一种纯粹的创新理念，为数以亿计用户的生活带来改变。综合即时沟通、娱乐社交和生活服务为一体的新移动生活方式在微信里逐步形成。用户可以通过发送语音、图片和文字信息实现多种形式的即时沟通；“摇一摇”及“附近的人”创造了一种全新的社交体验;“朋友圈”分享生活点滴，带动熟人社交；“游戏中心”及“表情商店”提供更多娱乐休闲生活体验；“公众平台”让每一位用户都能打造自己的品牌，也让更多的创新不断涌出；
+					微信支付更是开启了移动生活的大门。截至2016年第三季度，“微信和WeChat”的合并月活跃帐户数达到8.46亿。连接打造智慧生活，以互联网为媒介，微信从交流工具成长为连接各行业的开放平台，连接人与设备，连接人与企业服务，感受智慧生活。</p>
+ -->
+			{:htmlspecialchars_decode($data.content)}
+			{$data.addtime}
+		</div>
+
+	</div>
+
+
+	<!--手机底部区域-->
+	<div class="sj_foot">
+		<p>备案编号：京ICP备11111111号-1　法律顾问：  版权所有：Copyright (c) 2018-2020  All Rights Reserved.</p>
+		<p>电子邮箱：  技术支持 <a href=""></a></p>
+	</div>
+	<!--手机底部区域结束-->
+
+</body>
+<!html>

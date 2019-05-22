@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+    {if empty($node_name)}
+        {if empty($node['is_show'])}
+        <li class="active"><a href="javascript:void(0);">{$node.name}</a></li>
+        {/if}
+    {else}
+        <li class="active"><a href="javascript:void(0);">{$node_name}</a></li>
+    {/if}
+
+    {if !empty($brotherNodes)}
+    {volist name="brotherNodes" id="v"}
+    {if !$v['status'] && $v['is_show']}
+    <li{if $v.nodeid==$node.nodeid} class="active"{/if}><a href="{:url($v['controller'].'/'.$v['action'], $v['param'])}">{$v.name}</a></li>
+    {/if}
+    {/volist}
+    {/if}
+</ul>

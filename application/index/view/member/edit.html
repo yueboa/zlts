@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>修改个人资料</title>
+		<script src='__PLUGINS__/q-js/fb.js'></script>
+		<link rel="stylesheet" href="__PLUGINS__/q-css/edit.css" type="text/css">
+		<script src="__PLUGINS__/q-js/jquery1.12.js"></script>
+</head>
+<body>
+	<div class='warp'>
+		<div class="logo">
+			<a href="{:url('personalcenter/index')}"><img src="__PLUGINS__/q-img/logo.png" alt="" title=""></a>
+		</div>
+		<div class="people">
+			<div class="pic">
+				<img src="{$member.img_url}" alt="" title="">
+			</div>
+			<a href="{:url('Identity/index')}" class="auth">
+				<img src="__PLUGINS__/q-img/icon_01.jpg">
+	 		</a>
+			<!--	<a class="edit" >
+				{eq name='$member.identity_is' value='0'}待审核{/eq}
+				{eq name='$member.identity_is' value='1'}审核通过{/eq}
+				{eq name='$member.identity_is' value='2'}审核失败{/eq}
+			</a> -->
+			<p class="name" ><span style='float:left;margin-left:30%'>{$member.nikename}</span><img style='float:left;' id=useredit onclick='useredit()' src="__PLUGINS__/q-img/icon_02.jpg"></p>
+			</div>
+
+		<!--表单-->
+		<form action="{:url('Member/edit')}" method="post" id="form1" enctype="multipart/form-data">
+			<!--修改头像-->
+			<div class="label">
+				<ul>
+					<li>
+						<span>*</span>修改头像：
+					</li>
+					<li class="hli">
+						<div class="box">
+							<div class="js_uploadBox">
+								<a class="btn" href="javascript:">请点击上传新头像</a>
+								<input type="file" name="file" class="upload-img">
+								<div class="js_showImg " style="background-image:url({$member.img_url})">
+									<img src=""  id="imgpic3">
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--姓名-->
+			<div class="label">
+				<ul>
+					<li>
+						<span>*</span>姓名：
+					</li>
+					<li>
+						<input type="text" value="{$member.nikename}" name="nikename"  placeholder="" id="nikename" required>
+					</li>
+				</ul>
+			</div>
+			<!--办公电话-->
+			<div class="label">
+				<ul>
+					<li>
+						<span>*</span>手机号码：
+					</li>
+					<li>
+						<input type="text" value="{$member.tel}" name="tel" placeholder="" id="tel"  required>
+					</li>
+				</ul>
+			</div>
+			<!--通讯地址-->
+			<div class="label">
+				<ul>
+					<li>
+						<span>*</span>通讯地址：
+					</li>
+					<li>
+						<input type="text" value="{$member.household}" name="household" placeholder="" id="household"  required>
+					</li>
+				</ul>
+			</div>
+			<input type="text" value="{$member.member_id}" name="member_id"  style='display:none;' id="member_id"  required>
+			<button type="submit" id="next-btn">修改并保存</button>
+		</form>
+	</div>
+	<!--手机底部区域-->
+	<div class="sj_foot">
+		<p>备案编号：京ICP备11111111号-1　法律顾问：  版权所有：Copyright (c) 2018-2020  All Rights Reserved.</p>
+		<p>电子邮箱：  技术支持 <a href=""></a></p>
+	</div>
+	<!--手机底部区域结束-->
+
+	<!--图片-->
+	<script src="__PLUGINS__/js/jquery.uploadView.js"></script>
+	<script>
+			$('.js_uploadBox input[type="file"]').uploadView({
+				uploadBox: '.js_uploadBox', //设置上传框容器
+				showBox: '.js_showImg', //设置显示预览图片的容器
+				width:750, //预览图片的宽度，单位px
+				height: 'auto', //预览图片的高度，单位px
+				allowType: ["gif", "jpeg", "jpg", "bmp", "png"], //允许上传图片的类型
+				maxSize: 2, //允许上传图片的最大尺寸，单位M
+				success: function(e) {
+				
+				}
+			});
+			$('.js_uploadBox a').click(function() {
+				$(this).parents('.js_uploadBox').find('input[type="file"]').click();
+			});
+	</script>
+<script>
+	$('#next-btn').click(function () {
+		if ( /^1[34578]\d{9}$/.test($.trim($('#tel').val())) == false || $.trim($('#tel').val()).length == '' || $.trim($('#tel').val()).length == null || $.trim($('#nikename').val()).length == '' || $.trim($('#fullname').val()).length == null  || $.trim($('#household').val()).length == '' || $.trim($('#household').val()).length == null ){
+			alert('认真填写信息再提交哦');
+			return false;
+		}
+		//$('#form1').submit();
+	})
+</script>
+</body>
+<!html>
+
+
+<script>
+	function useredit(){
+		window.location.href="{:url('Member/edit')}";
+	}
+
+
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>我的活动</title>
+		<script src='__PLUGINS__/q-js/fb.js'></script>
+		<link rel="stylesheet" href="__PLUGINS__/q-css/activity.css" type="text/css">
+</head>
+<body>
+
+	<div class='warp'>
+		<div class="logo">
+			<a href="{:url('personalcenter/index')}"><img src="__PLUGINS__/q-img/logo.png" alt="" title=""></a>
+		</div>
+		<div class="people">
+			<div class="pic">
+				<img src="{$member.img_url}" alt="" title="">
+			</div>
+			<p class="name">我参加的活动</p>
+		</div>
+
+		<div class="details">
+			<!--<div class="zero">您还未参加过活动</div>-->
+			<ul>
+				{volist name="data" id="v"}
+					<li><span>{$v.name}</span><a href="{:url('activity/info','id='.$v.id)}">查看详情</a> </li>
+				{/volist}
+				
+			</ul>
+		</div>
+
+	</div>
+
+
+	<!--手机底部区域-->
+	<div class="sj_foot">
+		<p>备案编号：京ICP备11111111号-1　法律顾问：  版权所有：Copyright (c) 2018-2020  All Rights Reserved.</p>
+		<p>电子邮箱：  技术支持 <a href=""></a></p>
+	</div>
+	<!--手机底部区域结束-->
+
+</body>
+<!html>

@@ -1,0 +1,120 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+					<ul class="nav nav-tabs">
+						{if empty($node_name)}
+						{if empty($node['is_show'])}
+						<li class="active"><a href="javascript:void(0);">{$node.name}</a></li>
+						{/if}
+						{else}
+						<li class="active"><a href="javascript:void(0);">{$node_name}</a></li>
+						{/if}
+
+						{if !empty($brotherNodes)}
+						{volist name="brotherNodes" id="v"}
+						{if !$v['status'] && $v['is_show']}
+						<li{if $v.nodeid==$node.nodeid} class="active"{/if}><a href="{:url($v['controller'].'/'.$v['action'])}">{$v.name}</a></li>
+						{/if}
+						{/volist}
+						{/if}
+					</ul>
+                </div>
+                <div class="ibox-content">
+					<form method="post" class="form-horizontal hhn-ajaxform">
+                       <input type="hidden" name="member_id" value="{$data.member_id}">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-7">
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">用户昵称</label>
+									<div class="col-sm-10">
+										<input type="text" name="nikename" class="form-control" value="{$data.nikename}">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">真实姓名</label>
+									<div class="col-sm-10">
+										<input type="text" name="fullname" class="form-control" value="{$data.fullname}">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">电话</label>
+									<div class="col-sm-10">
+										<input type="text" name="tel" class="form-control" value="{$data.tel}">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">头像</label>
+									<div class="col-sm-10">
+										  {include file="member/img_url"/} 
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">通讯地址</label>
+									<div class="col-sm-10">
+										<input type="text" name="household" class="form-control" value="{$data.household}">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">身份证号</label>
+									<div class="col-sm-10">
+										<input type="text" name="idcard" class="form-control" value="{$data.idcard}">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">身份证正面</label>
+									<div class="col-sm-10">
+										  {include file="member/identity_img"/} 
+									</div>
+								</div>
+								<!-- <div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">审核</label>
+									<div class="col-sm-10">
+										<div class="radio">
+			  
+											<label for="identity_is-0"><input id="identity_is-0" name="identity_is" type="radio" value="0" {eq name='$data.identity_is' value='0'} checked="" {/eq}> 待审核</label>
+											<label for="identity_is-1"><input id="identity_is-1" name="identity_is" type="radio" value="1" {eq name='$data.identity_is' value='1'} checked="" {/eq}> 通过审核</label>
+											<label for="identity_is-2"><input id="identity_is-2" name="identity_is" type="radio" value="2" {eq name='$data.identity_is' value='2'} checked="" {/eq}> 审核失败</label>
+						 
+										</div>
+									</div>
+								</div> -->
+							</div>
+							
+								
+
+							<div class="hr-line-dashed"></div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2">
+
+									<button class="btn btn-primary ajaxbutton" type="submit">提交</button>
+
+									<button class="btn btn-white" type="reset">重置</button>
+								</div>
+							</div>
+						</div>
+                    </form>
+                </div>
+				
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	var multifile = 0;
+	var maximum = 1;
+
+
+</script>
+
+

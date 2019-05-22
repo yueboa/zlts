@@ -1,0 +1,176 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    {include file="public/node" /}
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal ajaxform" action="">
+                        <!--<input type="hidden" name="id" value="">-->
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">奖品类型</label>
+                            <div class="col-sm-10">
+                                <select name="prize_type" id="prize_type" class="form-control " onchange="typebtn()" >
+                                    <option value="">--请选择--</option>
+                                    {volist name='type' key="k" id='vo'}
+                                        <option value="{$k}">{$vo}</option>
+                                    {/volist}
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">奖品名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="prize_name" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">奖品图片</label>
+                            <div class="col-sm-10">
+                                <script src="/static/plugins/plupload/plupload.full.min.js"></script>
+                                <div class="uploader-box " id="prize_pic-uploader-box" style="position: relative;">
+                                    <button type="button" class="btn btn-primary btn-sm" id="prize_pic-button" data-text="上传文件" style="position: relative; z-index: 1;">上传文件</button>
+                                    <div class="alert alert-danger alert-dismissable" style="display: none;"></div>
+                                    <div class="uploader-list"></div>
+                                    <div id="prize_pic_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 0px; width: 70px; height: 30px; overflow: hidden; z-index: 0;">
+                                        <input  id="prize_pic" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" accept=".jpg,.jpeg,.png,.gif" tabindex="-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">中奖率(%)</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="v" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">奖品数量(个)</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="amount" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <span id="numshop" style="display: none;">
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">实物奖品库存(个)</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="num" class="form-control" value="">
+                            </div>
+                        </div>
+                        </span>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否允许幸运值提</label>
+                            <div class="col-sm-10" >
+                                <input type="radio" onclick="radiobtn(1)" checked ='' name="radio_style" value="1">是
+                                <input type="radio" onclick="radiobtn(0)" name="radio_style" value="0">否
+                            </div>
+                        </div>
+
+                        <span id="radiovshop">
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">升该奖品中奖率</label>
+                            <div class="col-sm-10">
+                                每<input type="text" name="need_luck"  value=""/>
+                                幸运值提升<input type="text" name="multiple_v"  value=""/>
+                                倍的中奖概率，最大限制<input type="text" name="max_v"  value=""/>%的中奖率
+                            </div>
+                        </div>
+                        </span>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">指定可中会员级别</label>
+                            <div class="col-sm-10">
+                                <select name="agent_id" id="agent_id" class="form-control " style="">
+                                    <option value="0">--全部会员--</option>
+                                    <option value="1">代理人</option>
+                                    <option value="2">运营商</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排序</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="sort" class="form-control" value="">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-white" type="button" onclick="window.location.href='{:url(\'Prize/index\')}'" >取消</button>
+                                <button class="btn btn-primary" type="submit">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script>
+    $(function(){
+        hhn.upload({
+            name:'prize_pic',
+            value:'',
+            url:'/admin.php/attachment/upload.html',
+            multifile:0,
+            maximum:1,
+            maxsize:'2048kb',
+            ext_type:'jpg,jpeg,png,gif',
+            ext_field: [],
+            show_field_text:1,
+            show_url:0,
+            show_size:{"width":"auto","height":"100px"},
+            multipart_params:[],
+            field_name:'imgurl'  });
+    })
+</script>
+
+<script>
+
+    function typebtn(){
+        var prize_type=$('#prize_type').val();
+        if(prize_type==1){
+            $('#numshop').show();
+        }else{
+            $('#numshop').hide();
+        }
+    }
+
+    function radiobtn(owe){
+
+        if(owe===1){
+            $('#radiovshop').show();
+        }
+        if(owe===0){
+            $('#radiovshop').hide();
+        }
+    }
+
+
+</script>

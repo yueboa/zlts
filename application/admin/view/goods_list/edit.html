@@ -1,0 +1,111 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    {include file="public/node" /}
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal ajaxform" action="">
+                        <!--<input type="hidden" name="id" value="">-->
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-7">
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">奖品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="prize_name" class="form-control" value="">
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">中奖率(%)</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="v" class="form-control" value="">
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">是否允许幸运值提</label>
+                                    <div class="col-sm-10" >
+                                        <input type="radio" onclick="radiobtn(1)" checked ='' name="radio_style" value="1">是
+                                        <input type="radio" onclick="radiobtn(0)" name="radio_style" value="0">否
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">指定可中会员级别</label>
+                                    <div class="col-sm-10">
+                                        <select name="agent_id" id="agent_id" class="form-control " style="">
+                                            <option value="0">--全部会员--</option>
+                                            <option value="1">代理人</option>
+                                            <option value="2">运营商</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">内容</label>
+                                    <div class="col-sm-10">
+                                        {include file="public/editor"/}
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-5">
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-md-3 control-label">列表样式</label>
+                                    <div class="col-sm-9 col-md-9">
+                                        <input class="form-control " type="text" name="keywords" placeholder="多个用英文逗号分割" id="keywords" value="" style=""  />
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-md-3 control-label">缩略图</label>
+                                    <div class="col-sm-9 col-md-9">
+                                        {include file="public/upload"/}
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-md-3 control-label">排序</label>
+                                    <div class="col-sm-9 col-md-9">
+                                        <input type="text" name="sort" class="form-control" value="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-white" type="button" onclick="window.location.href='{:url(\'Prize/index\')}'" >取消</button>
+                                    <button class="btn btn-primary" type="submit">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var multifile = 1;
+    var maximum = 3;
+
+
+</script>
+

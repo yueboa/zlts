@@ -1,0 +1,40 @@
+<!--上传图片-->
+
+<script src="/static/plugins/plupload/plupload.full.min.js"></script>
+<div class="uploader-box " id="identity_img-uploader-box" style="">
+	<button type="button" class="btn btn-primary btn-sm" id="identity_img-button" data-text="上传文件">上传文件</button>
+	<div class="alert alert-danger alert-dismissable" style="display: none;"></div>
+	<div class="uploader-list"></div>
+</div>
+
+
+<script >
+    var identity_img = '';
+    {if condition="isset($data['identity_img'])"}
+    	identity_img = '{$data["identity_img"]}';
+    {/if}
+	//img = '[{"imgurl":"\/uploads\/20190301\/c415f597723b637154447db03fd5f82e.png"},{"imgurl":"\/uploads\/20190301\/9ee7d631e6e3c8605c08727c0956818d.png"},{"imgurl":"\/uploads\/20190301\/30d28e25d9d3edc64789c23a153c6fd2.png"},{"imgurl":"\/uploads\/20190301\/c10fd610d97402413979cd5c0579c840.png"}]';
+    multifile = typeof(multifile) == 'undefined'?1:multifile;
+    maximum = typeof(maximum) == 'undefined'?1:maximum;
+
+$(function(){
+	   hhn.upload({ 
+		name:'identity_img', 
+		value:identity_img, 
+		url:"{:url('attachment/upload')}", 
+		multifile:0, 
+		maximum:1, 
+		maxsize:'2048kb',
+		ext_type:'jpg,jpeg,png,gif', 
+		ext_field: [],
+		show_field_text:1, 
+		show_url:0,
+		show_size:{"width":"auto","height":"100px"}, 
+		multipart_params:[],
+		field_name:'identity_img'  
+		});
+})
+
+
+</script>
+

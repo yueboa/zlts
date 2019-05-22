@@ -1,0 +1,93 @@
+<div class="wrapper wrapper-content">
+
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>登录信息</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        您好，{$admin.username}
+                    </p>
+                    <p>所属角色：{$role.name}</p>
+
+                    <div class="hr-line-dashed"></div>
+                    <p>
+                        上次登录时间：{:date('Y-m-d H:i:s', $admin['last_login_time'])}
+                    </p>
+                    <p>
+                        上次登录IP：{$admin.last_login_ip}
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>安全提示</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>暂无</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>开发团队</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>暂无</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>系统信息</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <p>
+                        程序版本：V1.0
+                    </p>
+                    <p>
+                        操作系统：{:PHP_OS}
+                    </p>
+
+                    <p>
+                        服务器软件：{$_SERVER ['SERVER_SOFTWARE']}
+                    </p>
+                    <p>
+                        MySQL 版本：{$mysql_ver}
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</div>

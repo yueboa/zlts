@@ -1,0 +1,99 @@
+<div class="wrapper wrapper-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    {include file="public/node" /}
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal hhn-ajaxform">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                {volist name="fields[0]" id="field"}
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 control-label">{$field.title?:$field.name}</label>
+                                    <div class="col-sm-10">
+                                        {:form($field)}
+                                        {if !empty($field['notice'])}
+                                        <span class="help-block m-b-none small">{$field.notice|raw}</span>
+                                        {/if}
+                                    </div>
+
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                {/volist}
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 control-label">权限管理</label>
+                                    <div class="col-sm-10">
+                                        {if !empty($data['roleid']) && $data['roleid'] == config('super_role_id')}
+                                        超级管理员角色，无需设置任何权限！
+                                        {else}
+                                        <table class="table table-striped table-bordered table-hover">
+                                            {volist name="nodes" id="node"}
+                                            {if !$node['pid']}
+                                            <tr>
+                                                <td width="140">
+                                                    <label>
+                                                        <input type="checkbox" name="nodes[]" value="{$node.nodeid}"{if in_array($node['nodeid'],$data['nodes'])} checked{/if}> {$node.name}
+                                                    </label>
+
+                                                </td>
+                                                <td>
+                                                    <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0;">
+                                                        <?php
+                                                        $node['_childs'] = array_filter(explode(',', $node['_childs']));
+                                                        foreach($node['_childs'] as $key){
+                                                        ?>
+                                                        <tr>
+                                                            <td width="140"><label>
+                                                                <input type="checkbox" name="nodes[]" value="{$key}"{if in_array($key,$data['nodes'])} checked{/if}> {$nodes[$key]['name']}
+                                                            </label></td>
+                                                            <td>
+                                                                <?php
+
+$nodes[$key]['_childs'] = array_filter(explode(',', $nodes[$key]['_childs']));
+foreach($nodes[$key]['_childs'] as $k){
+                                                                ?>
+                                                                <label style="width: 120px;"><input type="checkbox" name="nodes[]" value="{$k}"{if in_array($k,$data['nodes'])} checked{/if}> {$nodes[$k]['name']}</label>
+                                                                <?php } ?>
+                                                            </td>
+                                                        </tr>
+                                                        <?php } ?>
+
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            {/if}
+                                            {/volist}
+                                        </table>
+                                        {/if}
+                                    </div>
+
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+
+                                    <button class="btn btn-primary ajaxbutton" type="submit">{:lang('submit')}</button>
+
+                                    <button class="btn btn-white" type="reset">{:lang('reset')}</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

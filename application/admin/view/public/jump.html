@@ -1,0 +1,72 @@
+
+<style>
+    #jump-box{
+        border: 1px solid #eee;
+        border-radius: 3px;
+        overflow: hidden;
+        max-width: 500px;
+        margin: 0 auto;
+        background: #fff;
+    }
+    #jump-box .head{
+        background: #1ab394;
+        font-size: 16px;
+        padding: 10px 20px;
+        color: #fff;
+    }
+    #jump-box .main{
+        padding: 20px;
+        font-size: 16px;
+    }
+    #jump-box .main .success{
+        color: #000;
+    }
+    #jump-box .main .error{
+        color: #ed5565;
+    }
+    #jump-box .main .jump{
+        padding-top: 20px;
+        font-size: 12px;
+    }
+</style>
+
+<div id="jump-box">
+    <div class="head">
+        提示消息
+    </div>
+    <div class="main">
+
+        <?php switch ($code) {?>
+        <?php case 1:?>
+        <div class="success"><?php echo(strip_tags($msg));?></div>
+        <?php break;?>
+        <?php case 0:?>
+        <div class="error"><?php echo(strip_tags($msg));?></div>
+        <?php break;?>
+        <?php } ?>
+
+
+        <div class="jump">
+            页面自动 <a id="href" href="<?php echo($url);?>">跳转</a> 等待时间： <b id="wait"><?php echo($wait);?></b>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        var box = $('#jump-box');
+        box.css('margin-top', ($(window).height()-box.height())/2.5 + 'px');
+
+
+        var wait = document.getElementById('wait'),
+            href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+
+    })
+</script>
